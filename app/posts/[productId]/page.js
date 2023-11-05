@@ -1,6 +1,11 @@
 export default async function myPost({ params }) {
   const res = await fetch(
-    `https://fakestoreapi.com/products/${params.productId}`
+    `https://fakestoreapi.com/products/${params.productId}`,
+    {
+      next : {
+        revalidate : 120
+      }
+    }
   );
   const product = await res.json();
   return (
