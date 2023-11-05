@@ -1,17 +1,16 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 export const metadata = {
   title: "posts page",
 };
 
 const page = async () => {
-  const res = await fetch("https://fakestoreapi.com/products",
-  {
-    next : {
-      revalidate : 120
-    }
-  }
-  );
+  const res = await fetch("https://fakestoreapi.com/products", {
+    next: {
+      revalidate: 120,
+    },
+  });
   const products = await res.json();
 
   const allProducts = products.map((product) => {
@@ -22,7 +21,13 @@ const page = async () => {
         className="app__popular-products_product padding__product"
       >
         <div>
-          <img src={product.image} alt="popular" />
+          {/* <img src={product.image} alt="popular" /> */}
+          <Image
+            src={product.image}
+            alt="Image description"
+            width={400}
+            height={400}
+          />
           <span>
             <i className="fa-regular fa-heart"></i>
           </span>
